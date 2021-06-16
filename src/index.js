@@ -61,13 +61,13 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
-    }
+    // const winner = calculateWinner(this.state.squares);
+    // let status;
+    // if (winner) {
+    //   status = 'Winner: ' + winner;
+    // } else {
+    //   status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
+    // }
     // const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     // remove above line and replace with if/else statement
     return (
@@ -126,6 +126,7 @@ class Game extends React.Component {
         // Unlike the array push() method you might be more familiar with, the concat() method doesn’t mutate the original array, so we prefer it.
 
       }]),
+      stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
   }
@@ -143,7 +144,8 @@ class Game extends React.Component {
   //lift state up again from board to game
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
+    // modify the Game component’s render method from always rendering the last move to rendering the currently selected move according to stepNumber
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ? 
