@@ -52,6 +52,10 @@ class Board extends React.Component {
     // immutability makes complex features much easier to implement. Later in this tutorial, we will implement a “time travel” feature that allows us to review the tic-tac-toe game’s history and “jump back” to previous moves. This functionality isn’t specific to games — an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game’s history intact, and reuse them later.
     // The main benefit of immutability is that it helps you build pure components in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
     // see shouldComponentUpdate() and pure components/optimizing performance
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    // handle function returns early by ignoring click if someone wins or if square is already filled
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       squares: squares,
@@ -72,8 +76,15 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
+    }
+    // const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    // remove above line and replace with if/else statement
     return (
       <div>
         <div className="status">{status}</div>
@@ -114,7 +125,8 @@ class Game extends React.Component {
 }
 
 // ========================================
-
+// We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
+// Placing the history state into the Game component lets us remove the squares state from its child Board component. Just like we “lifted state up” from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board’s data, and lets it instruct the Board to render previous turns from the history.
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
