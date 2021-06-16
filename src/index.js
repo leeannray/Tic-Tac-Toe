@@ -11,6 +11,7 @@ class Square extends React.Component {
   //   };
   // }
 // constructor deleted from Square bc square in end will not keep track of game's state instead board will
+// Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they’re clicked. In React terms, the Square components are now controlled components. The Board has full control over them.
   render() {
     return (
       <button 
@@ -42,6 +43,7 @@ class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
+    // we call .slice() to create a copy of the squares array to modify instead of modifying the existing array
     squares[i] = 'X';
     this.setState({squares: squares});
   }
