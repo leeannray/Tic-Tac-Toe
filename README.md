@@ -1,4 +1,73 @@
-# Getting Started with Create React App
+# Tic-Tac-Toe<img src="/images/" alt="Tic-Tac-Toe" width="200px"/> by Lee Ann Ray
+
+- App that allows users to play tic-tac-toe.
+- App indicates when a player has won the game.
+- App stores a game's history as a game progresses.
+- App allows players to review a game’s history and see previous versions of a game’s board.
+
+##### React was used to build this application.
+
+### Gameplay
+
+<img src="./" alt="#" width="500">
+
+1.
+2.
+3.
+4.
+5.
+6.
+
+### Prerequisites
+
+- ES6
+- JSX
+- JavaScript
+
+<!-- ### Version
+
+- **2103180934**
+  ✔ Last Update @done (March 24th 2021, 13:48) -->
+
+### Framework
+
+- HTML5, JavaScript, CSS3
+
+### Components
+
+- JSX
+<!-- Bootstrap, Google Fonts, SVG -->
+
+### Software
+
+- Visual Studio Code Editor
+- Github for versioning
+
+<!-- ### CONTRIBUTE
+
+- A [contributing guideline](https://github.com/kratuvwxyz/CONTRIBUTE) available. -->
+
+### LICENSE
+
+- [MIT](https://github.com/leeannray/LICENSE) © 2021 Lee Ann Ray.
+
+## CONTACT
+
+Thank you for exploring my apps and projects! I hope you enjoy my work and would love to hear from you.
+
+"Others have seen what is and asked why. I have seen what could be and asked why not." -Pablo Picasso
+
+**EMAIL ME!** <a href="mailto:leeann.n.ray@gmail.com?Subject=Message from Github">leeann.ray.github@gmail.com</a>.
+
+<hr />
+
+<img src="#" alt="Lee Ann Ray Logo" width="250px"/> &copy; 2020-2021. <a href="#" target="_blank" style="text-decoration:none;">LEE ANN RAY</a>. All Rights Reseverd. &#160;
+<a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="Facebook" width="25" /></a> &#160;
+<a href="https://www.instagram.com/whatdotheycallit" target="_blank" style="text-decoration:none;"><img src="#" alt="Instagram" width="25" /></a> &#160;
+<a href="https://www.linkedin.com/leeannnorman1988" target="_blank" style="text-decoration:none;"><img src="#" alt="LinkedIn" width="25" /></a> &#160;
+<a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="LEE ANN RAY BLOG" width="25" /></a> &#160;
+
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +136,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
