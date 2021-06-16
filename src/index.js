@@ -191,6 +191,7 @@ function calculateWinner(squares) {
   return null;
 }
 // For each move in the tic-tac-toe game’s history, we create a list item <li> which contains a button <button>. The button has a onClick handler which calls a method called this.jumpTo()
+// key is a special and reserved property in React (along with ref, a more advanced feature). When an element is created, React extracts the key property and stores the key directly on the returned element. Even though key may look like it belongs in props, key cannot be referenced using this.props.key. React automatically uses key to decide which components to update. A component cannot inquire about its key.
 
 // helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
 // ========================================
