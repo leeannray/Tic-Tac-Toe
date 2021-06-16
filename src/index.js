@@ -99,8 +99,10 @@ class Game extends React.Component {
     super(props);
     this.state = {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
       }],
+      stepNumber: 0,
+      // add stepNumber to the Game component’s state to indicate which step we’re currently viewing.
       xIsNext: true,
     };
   }
@@ -139,7 +141,8 @@ class Game extends React.Component {
       // Using the map method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to “jump” to past moves.
 
       return (
-        <li>
+        <li key={move}>
+        {/* In the tic-tac-toe game’s history, each past move has a unique ID associated with it: it’s the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it’s safe to use the move index as a key. */}
           <button onClick={() => this.jumpTo(move)}>
             {desc}
           </button>
@@ -192,6 +195,9 @@ function calculateWinner(squares) {
 }
 // For each move in the tic-tac-toe game’s history, we create a list item <li> which contains a button <button>. The button has a onClick handler which calls a method called this.jumpTo()
 // key is a special and reserved property in React (along with ref, a more advanced feature). When an element is created, React extracts the key property and stores the key directly on the returned element. Even though key may look like it belongs in props, key cannot be referenced using this.props.key. React automatically uses key to decide which components to update. A component cannot inquire about its key.
+// Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+// dont use indices as keys usually bc there will be problems when reordering
+// In the tic-tac-toe game’s history, each past move has a unique ID associated with it: it’s the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it’s safe to use the move index as a key.
 
 // helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
 // ========================================
