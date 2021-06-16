@@ -9,7 +9,7 @@
 
 ### Gameplay
 
-<img src="/images/Gameplay.jpeg" alt="Gameplay" width="500">
+<img src="/images/Gameplay.jpeg" alt="Gameplay" width="700">
 
 1.
 2.
