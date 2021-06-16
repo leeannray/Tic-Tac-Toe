@@ -15,8 +15,12 @@ class Square extends React.Component {
     return (
       <button 
       className="square" 
-      onClick={ () => this.props.onClick()}
+      onClick={() => this.props.onClick()}
+      //onClick prop is built in DOM  <button> component
+      //This event handler calls this.props.onClick(). The Square’s onClick prop was specified by the Board.
+      // tells React to set up click event listener
       // When you call setState in a component, React automatically updates the child components inside of it too.
+      // Since the Board passed onClick={() => this.handleClick(i)} to Square, the Square calls this.handleClick(i) when clicked.
       >
         {this.props.value}
       </button>
@@ -34,6 +38,12 @@ class Board extends React.Component {
       squares: Array(9).fill(null),
       //board's initial state contains array of 9 nulls corresponding to squares
     };
+  }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
   }
 
   renderSquare(i) {
