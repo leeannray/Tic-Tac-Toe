@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
-  constructor(props) {
-    // add constructor to class to initialize state
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
+  // constructor(props) {
+  //   // add constructor to class to initialize state
+  //   super(props);
+  //   this.state = {
+  //     value: null,
+  //   };
+  // }
+// constructor deleted from Square bc square in end will not keep track of game's state instead board will
   render() {
     return (
       <button 
       className="square" 
-      onClick={ () => this.setState({value: 'X'})}
+      onClick={ () => this.props.onClick()}
       // When you call setState in a component, React automatically updates the child components inside of it too.
       >
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
@@ -41,6 +41,8 @@ class Board extends React.Component {
       <Square 
       value={this.state.squares[i]}
       onClick={() => this.handleClick(i)} 
+      // passing down two props to square = value and onClick
+      // onClick is fxn that Square can call when clicked
       //pass down a function from the Board to the Square, and we’ll have Square call that function when a square is clicked.
       />
     );
