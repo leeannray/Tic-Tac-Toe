@@ -44,6 +44,8 @@ class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
     // we call .slice() to create a copy of the squares array to modify instead of modifying the existing array
+    // immutability makes complex features much easier to implement. Later in this tutorial, we will implement a “time travel” feature that allows us to review the tic-tac-toe game’s history and “jump back” to previous moves. This functionality isn’t specific to games — an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game’s history intact, and reuse them later.
+
     squares[i] = 'X';
     this.setState({squares: squares});
   }
