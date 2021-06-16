@@ -129,6 +129,14 @@ class Game extends React.Component {
     });
   }
 
+  jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      xIsNext: (step % 2) === 0,
+      // we’ll define the jumpTo method in Game to update that stepNumber. We also set xIsNext to true if the number that we’re changing stepNumber to is even:
+    });
+  }
+
   //lift state up again from board to game
   render() {
     const history = this.state.history;
