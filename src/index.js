@@ -16,6 +16,7 @@ class Square extends React.Component {
       <button 
       className="square" 
       onClick={ () => this.setState({value: 'X'})}
+      // When you call setState in a component, React automatically updates the child components inside of it too.
       >
         {this.state.value}
       </button>
@@ -23,9 +24,26 @@ class Square extends React.Component {
   }
 }
 
+// To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.
+// Lifting state into a parent component is common when React components are refactored — let’s take this opportunity to try it out.
+
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+      //board's initial state contains array of 9 nulls corresponding to squares
+    };
+  }
+
   renderSquare(i) {
-    return <Square value ={i} />;
+    return (
+      <Square 
+      value={this.state.squares[i]}
+      onClick={() => this.handleClick(i)} 
+      //pass down a function from the Board to the Square, and we’ll have Square call that function when a square is clicked.
+      />
+    );
   }
 
   render() {
