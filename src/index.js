@@ -107,7 +107,8 @@ class Game extends React.Component {
     };
   }
   handleClick(i) {
-    const history = this.state.history;
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    // We will also replace reading this.state.history with this.state.history.slice(0, this.state.stepNumber + 1). This ensures that if we “go back in time” and then make a new move from that point, we throw away all the “future” history that would now become incorrect.
     const current = history[history.length - 1]
     const squares = current.squares.slice();
     // we call .slice() to create a copy of the squares array to modify instead of modifying the existing array
@@ -132,6 +133,8 @@ class Game extends React.Component {
   jumpTo(step) {
     this.setState({
       stepNumber: step,
+      // reflects move displayed to the user now
+      // After we make a new move, we need to update stepNumber by adding stepNumber: history.length as part of the this.setState argument. This ensures we don’t get stuck showing the same move after a new one has been made.
       xIsNext: (step % 2) === 0,
       // we’ll define the jumpTo method in Game to update that stepNumber. We also set xIsNext to true if the number that we’re changing stepNumber to is even:
     });
