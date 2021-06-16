@@ -37,14 +37,15 @@ function Square(props) {
 // Lifting state into a parent component is common when React components are refactored — let’s take this opportunity to try it out.
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      //board's initial state contains array of 9 nulls corresponding to squares
-      xIsNext: true,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     squares: Array(9).fill(null),
+  //     //board's initial state contains array of 9 nulls corresponding to squares
+  //     xIsNext: true,
+  //   };
+  // }
+  // dont need constructor since state lifted to game
 
   handleClick(i) {
     const squares = this.state.squares.slice();
@@ -66,8 +67,8 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square 
-      value={this.state.squares[i]}
-      onClick={() => this.handleClick(i)} 
+      value={this.props.squares[i]}
+      onClick={() => this.props.onClick(i)} 
       // passing down two props to square = value and onClick
       // onClick is fxn that Square can call when clicked
       //pass down a function from the Board to the Square, and we’ll have Square call that function when a square is clicked.
@@ -109,28 +110,42 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null)
+      }],
+      xIsNext: true,
+    };
+  }
+  //lift state up again from board to game
   render() {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const winner = calculateWinner(current.squares);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board 
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{status}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
     );
   }
 }
-
-// ========================================
-// We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
-// Placing the history state into the Game component lets us remove the squares state from its child Board component. Just like we “lifted state up” from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board’s data, and lets it instruct the Board to render previous turns from the history.
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
 
 function calculateWinner(squares) {
   const lines = [
@@ -152,3 +167,11 @@ function calculateWinner(squares) {
   return null;
 }
 // helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
+// ========================================
+// We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
+// Placing the history state into the Game component lets us remove the squares state from its child Board component. Just like we “lifted state up” from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board’s data, and lets it instruct the Board to render previous turns from the history.
+ReactDOM.render(
+  <Game />,
+  document.getElementById('root')
+);
+
