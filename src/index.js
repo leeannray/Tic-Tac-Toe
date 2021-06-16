@@ -98,14 +98,17 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
+      history: [
+        {
+        squares: Array(9).fill(null)
+      }
+    ],
       stepNumber: 0,
       // add stepNumber to the Game component’s state to indicate which step we’re currently viewing.
-      xIsNext: true,
+      xIsNext: true
     };
   }
+
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     // We will also replace reading this.state.history with this.state.history.slice(0, this.state.stepNumber + 1). This ensures that if we “go back in time” and then make a new move from that point, we throw away all the “future” history that would now become incorrect.
@@ -121,13 +124,15 @@ class Game extends React.Component {
     // handle function returns early by ignoring click if someone wins or if square is already filled
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
-      history: history.concat([{
-        squares: squares,
+      history: history.concat([
+        {
+        squares: squares
         // Unlike the array push() method you might be more familiar with, the concat() method doesn’t mutate the original array, so we prefer it.
 
-      }]),
+      }
+    ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: !this.state.xIsNext
     });
   }
 
@@ -136,7 +141,7 @@ class Game extends React.Component {
       stepNumber: step,
       // reflects move displayed to the user now
       // After we make a new move, we need to update stepNumber by adding stepNumber: history.length as part of the this.setState argument. This ensures we don’t get stuck showing the same move after a new one has been made.
-      xIsNext: (step % 2) === 0,
+      xIsNext: (step % 2) === 0
       // we’ll define the jumpTo method in Game to update that stepNumber. We also set xIsNext to true if the number that we’re changing stepNumber to is even:
     });
   }
@@ -169,12 +174,13 @@ class Game extends React.Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
     return (
       <div className="game">
         <div className="game-board">
           <Board 
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={i => this.handleClick(i)}
           />
         </div>
         <div className="game-info">
@@ -186,6 +192,22 @@ class Game extends React.Component {
   }
 }
 //update Game components render function to use most recent history entry to determine and display game's status
+
+
+// For each move in the tic-tac-toe game’s history, we create a list item <li> which contains a button <button>. The button has a onClick handler which calls a method called this.jumpTo()
+// key is a special and reserved property in React (along with ref, a more advanced feature). When an element is created, React extracts the key property and stores the key directly on the returned element. Even though key may look like it belongs in props, key cannot be referenced using this.props.key. React automatically uses key to decide which components to update. A component cannot inquire about its key.
+// Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+// dont use indices as keys usually bc there will be problems when reordering
+// In the tic-tac-toe game’s history, each past move has a unique ID associated with it: it’s the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it’s safe to use the move index as a key.
+
+// helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
+// ========================================
+// We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
+// Placing the history state into the Game component lets us remove the squares state from its child Board component. Just like we “lifted state up” from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board’s data, and lets it instruct the Board to render previous turns from the history.
+ReactDOM.render(
+  <Game />,
+  document.getElementById('root')
+);
 
 function calculateWinner(squares) {
   const lines = [
@@ -206,18 +228,4 @@ function calculateWinner(squares) {
   }
   return null;
 }
-// For each move in the tic-tac-toe game’s history, we create a list item <li> which contains a button <button>. The button has a onClick handler which calls a method called this.jumpTo()
-// key is a special and reserved property in React (along with ref, a more advanced feature). When an element is created, React extracts the key property and stores the key directly on the returned element. Even though key may look like it belongs in props, key cannot be referenced using this.props.key. React automatically uses key to decide which components to update. A component cannot inquire about its key.
-// Keys do not need to be globally unique; they only need to be unique between components and their siblings.
-// dont use indices as keys usually bc there will be problems when reordering
-// In the tic-tac-toe game’s history, each past move has a unique ID associated with it: it’s the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it’s safe to use the move index as a key.
-
-// helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
-// ========================================
-// We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
-// Placing the history state into the Game component lets us remove the squares state from its child Board component. Just like we “lifted state up” from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board’s data, and lets it instruct the Board to render previous turns from the history.
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
 
