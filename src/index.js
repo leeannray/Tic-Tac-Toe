@@ -47,23 +47,7 @@ class Board extends React.Component {
   // }
   // dont need constructor since state lifted to game
 
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    // we call .slice() to create a copy of the squares array to modify instead of modifying the existing array
-    // immutability makes complex features much easier to implement. Later in this tutorial, we will implement a “time travel” feature that allows us to review the tic-tac-toe game’s history and “jump back” to previous moves. This functionality isn’t specific to games — an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game’s history intact, and reuse them later.
-    // The main benefit of immutability is that it helps you build pure components in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
-    // see shouldComponentUpdate() and pure components/optimizing performance
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    // handle function returns early by ignoring click if someone wins or if square is already filled
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
+  
   renderSquare(i) {
     return (
       <Square 
@@ -88,7 +72,8 @@ class Board extends React.Component {
     // remove above line and replace with if/else statement
     return (
       <div>
-        <div className="status">{status}</div>
+        {/* <div className="status">{status}</div> */}
+        {/* removed above since game component is now rendering game's status */}
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -119,11 +104,49 @@ class Game extends React.Component {
       xIsNext: true,
     };
   }
+  handleClick(i) {
+    const history = this.state.history;
+    const current = history[history.length - 1]
+    const squares = current.squares.slice();
+    // we call .slice() to create a copy of the squares array to modify instead of modifying the existing array
+    // immutability makes complex features much easier to implement. Later in this tutorial, we will implement a “time travel” feature that allows us to review the tic-tac-toe game’s history and “jump back” to previous moves. This functionality isn’t specific to games — an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game’s history intact, and reuse them later.
+    // The main benefit of immutability is that it helps you build pure components in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+    // see shouldComponentUpdate() and pure components/optimizing performance
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    // handle function returns early by ignoring click if someone wins or if square is already filled
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+        // Unlike the array push() method you might be more familiar with, the concat() method doesn’t mutate the original array, so we prefer it.
+
+      }]),
+      xIsNext: !this.state.xIsNext,
+    });
+  }
+
   //lift state up again from board to game
   render() {
     const history = this.state.history;
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
+    const moves = history.map((step, move) => {
+      const desc = move ? 
+      'Go to move #' + move : 
+      'Go to game start';
+      // Using the map method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to “jump” to past moves.
+
+      return (
+        <li>
+          <button onClick={() => this.jumpTo(move)}>
+            {desc}
+          </button>
+        </li>
+      );
+    });
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
@@ -140,12 +163,13 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{/* TODO */}</ol>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
   }
 }
+//update Game components render function to use most recent history entry to determine and display game's status
 
 function calculateWinner(squares) {
   const lines = [
@@ -166,6 +190,8 @@ function calculateWinner(squares) {
   }
   return null;
 }
+// For each move in the tic-tac-toe game’s history, we create a list item <li> which contains a button <button>. The button has a onClick handler which calls a method called this.jumpTo()
+
 // helper function: Given an array of 9 squares, this function will check for a winner and return 'X', 'O', or null as appropriate.
 // ========================================
 // We’ll want the top-level Game component to display a list of past moves. It will need access to the history to do that, so we will place the history state in the top-level Game component.
