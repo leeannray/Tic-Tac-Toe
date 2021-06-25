@@ -1,17 +1,7 @@
 body * {
-  background: #2d6a4f;
-  font-family: "Shadows Into Light", cursive;
+  background: #fefefe;
+  font-family: "Gloria Hallelujah", cursive;
   outline: none;
-}
-
-nav {
-  font-size: xx-large;
-  display: flex;
-  flex: auto;
-}
-
-.navbar-brand {
-  align-items: center;
 }
 
 ol,
@@ -52,11 +42,8 @@ li button:hover {
 }
 
 .square {
-  background: #d8f3dc;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-color: #d8f3dc;
-  border-style: hidden;
-  border-radius: 10%;
+  background: #eadedb;
+  border: none;
   float: left;
   font-size: 30px;
   line-height: 34px;
@@ -85,14 +72,9 @@ li button:hover {
   flex: none;
 }
 
-.game-info-status {
-  color: #081c15;
-}
-
 .game-info {
   margin-left: 20px;
   width: 300px;
-  color: #081c15;
 }
 
 .bold {
@@ -100,7 +82,7 @@ li button:hover {
 }
 
 .highlight {
-  background-color: #d8f3dc;
+  background-color: #f7786b;
 }
 
 .reverse {
