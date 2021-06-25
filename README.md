@@ -63,7 +63,7 @@ Thank you for exploring my apps and projects! I hope you enjoy my work and would
 
 #### &copy; 2020-2021. <a href="#" target="_blank" style="text-decoration:none;">LEE ANN RAY</a>. All Rights Reseverd. &#160;
 
-##### <a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="Facebook" width="25" /></a> &#160;
+<!-- ##### <a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="Facebook" width="25" /></a> &#160; -->
 
 <!-- <a href="https://www.instagram.com/whatdotheycallit" target="_blank" style="text-decoration:none;"><img src="#" alt="Instagram" width="25" /></a> &#160;
 <a href="https://www.linkedin.com/leeannnorman1988" target="_blank" style="text-decoration:none;"><img src="#" alt="LinkedIn" width="25" /></a> &#160;
