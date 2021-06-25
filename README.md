@@ -11,7 +11,7 @@
 
 ### Gameplay
 
-<img src="/images/Gameplay.jpeg" alt="Gameplay" width="700">
+<img src="/images/Gameplay.jpeg" alt="Gameplay" width="700" align="center">
 
 1. We create a one dimensional array signifying the board and fill it with default value “”.
 2. When user clicks the button then check if it is previously clicked or not.
@@ -65,9 +65,9 @@ Thank you for exploring my apps and projects! I hope you enjoy my work and would
 
 ##### <a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="Facebook" width="25" /></a> &#160;
 
-<a href="https://www.instagram.com/whatdotheycallit" target="_blank" style="text-decoration:none;"><img src="#" alt="Instagram" width="25" /></a> &#160;
+<!-- <a href="https://www.instagram.com/whatdotheycallit" target="_blank" style="text-decoration:none;"><img src="#" alt="Instagram" width="25" /></a> &#160;
 <a href="https://www.linkedin.com/leeannnorman1988" target="_blank" style="text-decoration:none;"><img src="#" alt="LinkedIn" width="25" /></a> &#160;
-<a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="LEE ANN RAY BLOG" width="25" /></a> &#160;
+<a href="#" target="_blank" style="text-decoration:none;"><img src="#" alt="LEE ANN RAY BLOG" width="25" /></a> &#160; -->
 
 <!-- # Getting Started with Create React App
 
