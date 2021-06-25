@@ -1,52 +1,105 @@
-body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 34px;
-  }
-  
-  .square:focus {
-    outline: none;
-  }
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-  }
-  
-  
+body * {
+  background: #2d6a4f;
+  font-family: "Shadows Into Light", cursive;
+  outline: none;
+}
+
+ol,
+ul {
+  padding-left: 30px;
+}
+
+button {
+  background-color: Transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+li button {
+  border: none;
+  margin: 2px auto;
+}
+
+li button:hover {
+  letter-spacing: 2px;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: #d8f3dc;
+  border-color: #d8f3dc;
+  border-style: hidden;
+  border-radius: 10%;
+  float: left;
+  font-size: 30px;
+  line-height: 34px;
+  height: 80px;
+  margin: 3px;
+  padding: 0;
+  text-align: center;
+  width: 80px;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.game-board {
+  flex: none;
+}
+
+.game-info-status {
+  color: #081c15;
+}
+
+.game-info {
+  margin-left: 20px;
+  width: 300px;
+  color: #081c15;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.highlight {
+  background-color: #d8f3dc;
+}
+
+.reverse {
+  background: none;
+  border: 2px black solid;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.reverse:hover {
+  border-radius: 15px 205px 15px 200px/205px 15px 205px 15px;
+}
