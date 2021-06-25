@@ -13,12 +13,10 @@
 
 <img src="/images/Gameplay.jpeg" alt="Gameplay" width="700">
 
-1.
-2.
-3.
-4.
-5.
-6.
+1. We create a one dimensional array signifying the board and fill it with default value “”.
+2. When user clicks the button then check if it is previously clicked or not.
+3. If it is was clicked previously, do nothing else register the click.
+4. Now check if the game is won or not. These are the winning positions in the board. If any one of them is “O” or “X” then game is won.
 
 ### Prerequisites
 
