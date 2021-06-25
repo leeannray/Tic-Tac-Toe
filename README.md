@@ -1,4 +1,6 @@
-# <img src="/images/tictactoe.png" alt="Tic-Tac-Toe" width="700px"/> Tic-Tac-Toe by Lee Ann Ray
+<a href="url"><img src="/images/tictactoe.png" alt="Tic-Tac-Toe" align="center" width="800"></a>
+
+# Tic-Tac-Toe by Lee Ann Ray
 
 - App that allows users to play tic-tac-toe.
 - App indicates when a player has won the game.
