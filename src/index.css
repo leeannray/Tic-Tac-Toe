@@ -4,6 +4,12 @@ body * {
   outline: none;
 }
 
+nav {
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+}
+
 ol,
 ul {
   padding-left: 30px;
